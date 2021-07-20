@@ -1,61 +1,66 @@
 run:
   type: docker
 env:
-  - IL_URL
-  - IL_USERNAME
-  - IL_PASSWORD
-  - IL_CONFIG
-  - IL_USER_URL
-  - IL_USER_USERNAME
-  - IL_USER_PASSWORD
-  - IL_USER_CONFIG
-  - SIS_URL
-  - SIS_USERNAME
-  - SIS_PASSWORD
-  - SIS_CONFIG
-  - SIS_READ_URL
-  - SIS_READ_USERNAME
-  - SIS_READ_PASSWORD
-  - SIS_READ_CONFIG
-  - APP_SIS_URL
-  - APP_SIS_USERNAME
-  - APP_SIS_PASSWORD
-  - APP_SIS_CONFIG
-  - APP_SIS_READ_URL
-  - APP_SIS_READ_USERNAME
-  - APP_SIS_READ_PASSWORD
-  - APP_SIS_READ_CONFIG
-  - LEGACY_URL
-  - LEGACY_USERNAME
-  - LEGACY_PASSWORD
-  - LEGACY_CONFIG
-  - LEGACY_READ_URL
-  - LEGACY_READ_USERNAME
-  - LEGACY_READ_PASSWORD
-  - LEGACY_READ_CONFIG
-  - MISC_URL
-  - MISC_USERNAME
-  - MISC_PASSWORD
-  - MISC_CONFIG
+- IL_URL
+- IL_USERNAME
+- IL_PASSWORD
+- IL_CONFIG
+- IL_USER_URL
+- IL_USER_USERNAME
+- IL_USER_PASSWORD
+- IL_USER_CONFIG
+- SIS_URL
+- SIS_USERNAME
+- SIS_PASSWORD
+- SIS_CONFIG
+- SIS_READ_URL
+- SIS_READ_USERNAME
+- SIS_READ_PASSWORD
+- SIS_READ_CONFIG
+- APP_SIS_URL
+- APP_SIS_USERNAME
+- APP_SIS_PASSWORD
+- APP_SIS_CONFIG
+- APP_SIS_READ_URL
+- APP_SIS_READ_USERNAME
+- APP_SIS_READ_PASSWORD
+- APP_SIS_READ_CONFIG
+- LEGACY_URL
+- LEGACY_USERNAME
+- LEGACY_PASSWORD
+- LEGACY_CONFIG
+- LEGACY_READ_URL
+- LEGACY_READ_USERNAME
+- LEGACY_READ_PASSWORD
+- LEGACY_READ_CONFIG
+- MISC_URL
+- MISC_USERNAME
+- MISC_PASSWORD
+- MISC_CONFIG
 resources:
-  cpu: 1.0
-  soft_mem_limit: 1.6
-  max_mem: 3.0
+  cpu: 4
+  max_mem: 8
 dependencies:
-  - analytics-latency-config-service
-  - gearman-admin
+- analytics-latency-config-service
+- gearman-admin
 team: eng-deip
 aws:
   custom: true
   s3:
     read:
-      - clever-analytics
-      - redshift-respawn
-      - district-user-permissions-snapshot
+    - clever-analytics
+    - redshift-respawn
+    - district-user-permissions-snapshot
     write:
-      - clever-analytics
-      - redshift-respawn
-      - district-user-permissions-snapshot
+    - clever-analytics
+    - redshift-respawn
+    - district-user-permissions-snapshot
   managed:
     clever:
-      - Workflows
+    - Workflows
+pod_config:
+  dev:
+    migrationState: podOnly
+  group: us-west-2
+  prod:
+    migrationState: podOnly
